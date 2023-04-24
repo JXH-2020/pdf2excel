@@ -255,9 +255,11 @@ def pdf2excel():
 
             # 将数据列表和列名称传入DataFrame中
             df = pd.DataFrame(all_data[1:], columns=all_data[0])
-
+            v_res_dir = './pdf2excel/'
+            if not os.path.exists(v_res_dir):  # 检测pdf2excel是否存在，没有则重新创建
+                os.mkdir(v_res_dir)
             # 将数据写入Excel文件
-            with pd.ExcelWriter('./pdf2excel/' + file.split('.')[0] + '.xlsx', engine='openpyxl') as writer:
+            with pd.ExcelWriter(v_res_dir + file.split('.')[0] + '.xlsx', engine='openpyxl') as writer:
                 df.to_excel(writer, sheet_name='Sheet1', index=False)
                 worksheet = writer.sheets['Sheet1']
 
