@@ -12,7 +12,8 @@ if __name__ == '__main__':
 
     file_path = './pdf2img'
     last_str = file_path.split('.')[-1]  # 检测待检测文件的尾缀
-
+    if not os.path.exists('pdf2txt/'):  # 检测pdf2txt是否存在，没有则重新创建
+       os.mkdir('pdf2txt/')
     if last_str == 'pdf':
         utils.pdf2png(file_path, v_res_dir='pdf2img')  # 将pdf转化为图片,待后续检测
         for root, dirs, files in os.walk('./pdf2img'):
